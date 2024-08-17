@@ -9,7 +9,7 @@ export interface IOrderUserState {
 }
 
 // Начальное состояние
-const initialState: IOrderUserState = {
+export const initialState: IOrderUserState = {
   orders: [],
   error: null
 };
@@ -17,10 +17,7 @@ const initialState: IOrderUserState = {
 // Создаем асинхронный Thunk для получения заказов пользователя
 export const getUserOrders = createAsyncThunk(
   'userOrders/getUserOrders',
-  async () => {
-    const response = await selectOrdersApi();
-    return response;
-  }
+  selectOrdersApi
 );
 
 // Создаем слайс для заказов пользователя
@@ -52,3 +49,4 @@ export const userOrdersReducer = userOrdersSlice.reducer;
 export const userOrders = userOrdersSlice.name;
 export const { selectUserOrdersList, selectUserOrdersError } =
   userOrdersSlice.selectors;
+export default userOrdersSlice.reducer;

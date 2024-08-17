@@ -1,17 +1,16 @@
 import { getIngredientsApi } from '@api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TIngredient } from '@utils-types';
-import { RootState } from '../services/store';
 
 // Интерфейс состояния ингредиентов
-interface IIngredientsState {
+export interface IIngredientsState {
   ingredients: TIngredient[];
   isLoading: boolean;
   error: string | null;
 }
 
 // Начальное состояние
-const initialState: IIngredientsState = {
+export const initialState: IIngredientsState = {
   ingredients: [],
   isLoading: false,
   error: null
@@ -20,10 +19,7 @@ const initialState: IIngredientsState = {
 // Создаем асинхронный Thunk для получения данных ингредиентов
 export const getIngredients = createAsyncThunk(
   'ingredients/fetchIngredients',
-  async () => {
-    const response = await getIngredientsApi();
-    return response;
-  }
+  getIngredientsApi
 );
 
 // Создаем слайс для управления состоянием ингредиентов
@@ -59,3 +55,4 @@ export const ingredientsReducer = ingredientsSlice.reducer;
 export const ingredients = ingredientsSlice.name;
 export const { selectIngredients, selectorLoading, selectorIngredientsError } =
   ingredientsSlice.selectors;
+export default ingredientsSlice.reducer;
