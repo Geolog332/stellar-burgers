@@ -15,7 +15,7 @@ interface IOrderDetailsState {
 }
 
 // Начальное состояние
-const initialState: IOrderDetailsState = {
+export const initialState: IOrderDetailsState = {
   order: null,
   orderRequest: false,
   errorDetailsOrder: null,
@@ -97,3 +97,5 @@ export const selectOrderRequest = createSelector(
 export const { clearOrderState } = orderSlice.actions;
 export const orderDetailsReducer = orderSlice.reducer;
 export const orderDetail = orderSlice.name;
+
+export default orderSlice.reducer;

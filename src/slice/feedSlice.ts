@@ -11,7 +11,7 @@ export interface IFeedState {
 }
 
 // Начальное состояние
-const initialState: IFeedState = {
+export const initialState: IFeedState = {
   orders: [],
   total: null,
   totalToday: null,
@@ -19,10 +19,7 @@ const initialState: IFeedState = {
 };
 
 // Создаем асинхронный Thunk для получения данных о ленте заказов
-export const fetchFeed = createAsyncThunk('feed/fetchFeed', async () => {
-  const response = await getFeedsApi();
-  return response;
-});
+export const fetchFeed = createAsyncThunk('feed/fetchFeed', getFeedsApi);
 
 // Создаем слайс для управления состоянием ленты заказов
 export const feedSlice = createSlice({
@@ -63,3 +60,4 @@ export const feedReducer = feedSlice.reducer;
 export const feed = feedSlice.name;
 export const { getFeedState, getFeedOrders, getErrorFeed } =
   feedSlice.selectors;
+export default feedSlice.reducer;

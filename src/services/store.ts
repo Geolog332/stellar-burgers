@@ -12,7 +12,7 @@ import { feedReducer } from '../slice/feedSlice';
 import { userOrdersReducer } from '../slice/userOrderSlice';
 
 // Комбинируем все редьюсеры
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   ingredients: ingredientsReducer,
   burgerConstructor: burgerConstructorReducer,
   orderDetail: orderDetailsReducer,
@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
 });
 
 // Хранилище Redux с указанными редьюсерами
-const store = configureStore({
+export const store = configureStore({
   reducer: rootReducer,
   devTools: process.env.NODE_ENV !== 'production'
 });
